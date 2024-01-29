@@ -29,7 +29,7 @@ export const loginUser = (email, password) => {
         localStorage.setItem("refreshToken", refreshToken);
         dispatch(loginUserSuccess(token, userId));
         // dispatch(actions.autologoutAfter(expiredate * 1000));
-        dispatch(actions.autologoutAfter(expiredate * 1000));
+        dispatch(actions.autologoutAfter(expiredate.getTime()));
       })
       .catch((err) => {
         dispatch(loginUserError(err));
