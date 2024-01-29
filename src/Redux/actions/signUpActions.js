@@ -65,7 +65,7 @@ export const autologoutAfter = (ms) => {
     //securetoken.googleapis.com/v1/token?key=[API_KEY]
 
     //automat logout
-    https: setTimeout(() => {
+    setTimeout(() => {
       dispatch(logout());
     }, ms);
   };

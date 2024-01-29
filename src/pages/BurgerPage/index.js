@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import Burger from "../../components/burger";
 import BuildControls from "../../components/buildControls";
@@ -6,14 +6,11 @@ import Modal from "../../components/general/Modal";
 import OrderSummary from "../../components/Ordersummary";
 import Spinner from "../../components/general/spinner";
 
-class BurgerBuilder extends React.Component {
-  state = {
-    confirmOrder: false,
-  };
+const BurgerBuilder = (props) => {
+  const [confirmOrder, setConfirmOrder] = useState(false);
 
-  componentDidMount = () => {};
-  continueOrder = () => {
-    this.closeConfirmModal();
+  const continueOrder = () => {
+    closeConfirmModal();
   };
 
   // query = () => {
@@ -26,36 +23,24 @@ class BurgerBuilder extends React.Component {
   //   return query;
   // };
 
-  showConfirmModal = () => {
-    this.setState({ confirmOrder: true });
+  const showConfirmModal = () => {
+    setConfirmOrder(true);
   };
-  closeConfirmModal = () => {
-    this.setState({ confirmOrder: false });
+  const closeConfirmModal = () => {
+    setConfirmOrder(false);
   };
 
-  render() {
-    return (
-      <div>
-        <Modal
-          closeConfirmModal={this.closeConfirmModal}
-          show={this.state.confirmOrder}
-        >
-          {this.state.loading ? (
-            <Spinner />
-          ) : (
-            <OrderSummary
-              query={this.query}
-              onCancel={this.closeConfirmModal}
-              onContinue={this.continueOrder}
-            />
-          )}
-        </Modal>
+  return (
+    <div>
+      <Modal closeConfirmModal={closeConfirmModal} show={confirmOrder}>
+        <OrderSummary onCancel={closeConfirmModal} onContinue={continueOrder} />
+        )
+      </Modal>
 
-        <Burger />
-        <BuildControls showConfirmModal={this.showConfirmModal} />
-      </div>
-    );
-  }
-}
+      <Burger />
+      <BuildControls showConfirmModal={showConfirmModal} />
+    </div>
+  );
+};
 
 export default BurgerBuilder;

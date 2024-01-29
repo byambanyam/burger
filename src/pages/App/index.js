@@ -50,7 +50,7 @@ class App extends Component {
         this.props.autoLogoutAfter(expireDate.getTime() - new Date().getTime());
       } else {
         // teken hugtsaan duussan bain aa auto logout hiin
-        this.props.logout();
+        this.props.Logout();
       }
     }
   };

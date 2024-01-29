@@ -7,29 +7,24 @@ import { useLocation, useOutletContext, useNavigate } from "react-router";
 import Spinner from "../general/spinner";
 import * as actions from "../../Redux/actions/orderActions";
 
-function ContactData(props) {
+const ContactData = (props) => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState(null);
-  const [city, setCity] = useState(null);
-  const [street, setStreet] = useState(null);
-  const state = {
-    name: name,
-    city: city,
-    street: street,
-  };
+  const [name, setName] = useState();
+  const [city, setCity] = useState();
+  const [street, setStreet] = useState();
 
   const location = useLocation();
 
-  function changeName(e) {
+  const changeName = (e) => {
     setName(e.target.value);
-  }
-  function changeCity(e) {
+  };
+  const changeCity = (e) => {
     setCity(e.target.value);
-  }
-  function changeStreet(e) {
+  };
+  const changeStreet = (e) => {
     setStreet(e.target.value);
-  }
+  };
   useEffect(() => {
     if (props.newOrderStatus.finished && !props.newOrderStatus.error) {
       navigate({ pathname: "/orders", reflace: true });
@@ -42,9 +37,9 @@ function ContactData(props) {
       orts: props.ingredients,
       dun: props.price,
       hayag: {
-        name: state.name,
-        city: state.city,
-        street: state.street,
+        name: name,
+        city: city,
+        street: street,
       },
     };
     props.saveOrderAction(newOrder);
@@ -84,7 +79,7 @@ function ContactData(props) {
       )}
     </div>
   );
-}
+};
 
 const mapStateProps = (state) => {
   return {

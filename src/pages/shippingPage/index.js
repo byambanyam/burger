@@ -13,7 +13,7 @@ import {
   Outlet,
 } from "react-router-dom";
 
-function ShippingPage(props) {
+const ShippingPage = (props) => {
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ function ShippingPage(props) {
       />
     </div>
   );
-}
+};
 const mapStateTopProps = (state) => {
   return {
     price: state.reducer.totalPrice,
