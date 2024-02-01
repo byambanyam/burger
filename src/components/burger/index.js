@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import BurgerIngredient from "../burgerIngredient";
 import css from "./_.module.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import reducer from "../../Redux/Reducer/orderReducer";
+// import reducer from "../../Redux/Reducer/orderReducer";
+import BurgerContext from "../../context/BurgerContext";
 
 const Burger = (props) => {
-  const items = Object.entries(props.orts);
+  const burgerContext = useContext(BurgerContext);
+  const items = Object.entries(burgerContext.Burger.ingredients);
 
   let content = [];
   items.map((el) => {
@@ -24,7 +26,5 @@ const Burger = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return { orts: state.reducer.ingredients };
-};
-export default connect(mapStateToProps)(Burger);
+
+export default Burger;

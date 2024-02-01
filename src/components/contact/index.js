@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import css from "./_.module.css";
 import Button from "../general/Button";
@@ -13,18 +13,10 @@ const ContactData = (props) => {
   const [name, setName] = useState();
   const [city, setCity] = useState();
   const [street, setStreet] = useState();
+  const dunRef = useRef();
 
   const location = useLocation();
 
-  const changeName = (e) => {
-    setName(e.target.value);
-  };
-  const changeCity = (e) => {
-    setCity(e.target.value);
-  };
-  const changeStreet = (e) => {
-    setStreet(e.target.value);
-  };
   useEffect(() => {
     if (props.newOrderStatus.finished && !props.newOrderStatus.error) {
       navigate({ pathname: "/orders", reflace: true });
@@ -47,7 +39,10 @@ const ContactData = (props) => {
 
   return (
     <div className={css.Contact}>
-      Үнийн Дүн: {props.price} ₮
+      <div ref={dunRef}>
+        <strong>Үнийн Дүн: {props.price} ₮</strong>
+      </div>
+
       <div>
         {props.newOrderStatus.error &&
           `захиалгыг хадаглах явцад алдаа гарлаа : ${props.newOrderStatus.error}`}
@@ -57,19 +52,24 @@ const ContactData = (props) => {
       ) : (
         <div>
           <input
-            onChange={changeName}
+            onChange={(e) => (
+              dunRef.current.style.color === "red"
+                ? (dunRef.current.style.color = "green")
+                : (dunRef.current.style.color = "red"),
+              setName(e.target.value)
+            )}
             type="text"
             name="name"
             placeholder="Таны нэр"
           />
           <input
-            onChange={changeCity}
+            onChange={(e) => setCity(e.target.value)}
             type="text"
             name={"city"}
             placeholder="гэрийн  хаяг"
           />
           <input
-            onChange={changeStreet}
+            onChange={(e) => setStreet(e.target.value)}
             type="text"
             name={"street"}
             placeholder="Таны хот"

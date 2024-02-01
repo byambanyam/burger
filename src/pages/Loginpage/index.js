@@ -34,7 +34,7 @@ const Login = (props) => {
 
   return (
     <div className={css.Login}>
-      {props.userId && <Navigate to="/orders" />}
+      {props.userId && <Navigate to="/burger" />}
       <input onChange={changeEmail} type="email" placeholder="Имэйл хаяг" />
       <input onChange={passwordChange} type="password" placeholder="нууц үг" />
       {props.fireBaseError && (

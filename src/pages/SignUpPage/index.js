@@ -12,16 +12,6 @@ const SignUp = (props) => {
   const [password2, setPassword2] = useState("");
   const [error, setError] = useState("");
 
-  const changeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const changePassword1 = (e) => {
-    setPassword1(e.target.value);
-  };
-  const changePassword2 = (e) => {
-    setPassword2(e.target.value);
-  };
-
   const signup = () => {
     if (password1 === password2) {
       props.signUpUser(email, password1);
@@ -37,10 +27,18 @@ const SignUp = (props) => {
         <h1>Бүртгэл үүсгэх</h1>
         <strong> Та өөрийн мэдээлэлээ оруулана уу </strong>
       </div>
-      <input onChange={changeEmail} type="email" placeholder="Имэйл хаяг" />
-      <input onChange={changePassword1} type="password" placeholder="нууц үг" />
       <input
-        onChange={changePassword2}
+        onChange={(e) => setEmail(e.target.value)}
+        type="email"
+        placeholder="Имэйл хаяг"
+      />
+      <input
+        onChange={(e) => setPassword1(e.target.value)}
+        type="password"
+        placeholder="нууц үг"
+      />
+      <input
+        onChange={(e) => setPassword2(e.target.value)}
         type="password"
         placeholder="нууц үг давтах"
       />

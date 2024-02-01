@@ -7,7 +7,7 @@ const Menu = (props) => (
     <ul className={css.Menu}>
       {props.userId ? (
         <Fragment>
-          <MenuItem exact link="/">
+          <MenuItem exact link="/burger">
             ШИНЭ ЗАХИАЛГА
           </MenuItem>
 

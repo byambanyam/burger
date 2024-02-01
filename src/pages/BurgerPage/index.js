@@ -13,16 +13,6 @@ const BurgerBuilder = (props) => {
     closeConfirmModal();
   };
 
-  // query = () => {
-  //   const params = [];
-  //   for (let Orts in this.props.burgeriinOrts) {
-  //     params.push(Orts + "=" + this.props.burgeriinOrts[Orts]);
-  //   }
-  //   params.push("dun=" + this.props.niitUne);
-  //   const query = params.join("&");
-  //   return query;
-  // };
-
   const showConfirmModal = () => {
     setConfirmOrder(true);
   };
